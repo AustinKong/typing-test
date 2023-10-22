@@ -11,33 +11,38 @@ window.addEventListener("keydown", function (event) {
 // the last option dispatches the event to the listener first,
 // then dispatches event to window
 
+const ignoreKeys = [
+    "Shift", "Control", "Meta", "Alt", "CapsLock"
+]
+
 function registerKeyPress(key) {
-    console.log(key);
+    for (let i = 0; i < ignoreKeys.length; i++) {
+        if (key == ignoreKeys[i]) {
+            return;
+        }
+    }
+
+    if (currentQuoteContentSplit[caretIndex] == key) {
+        caretIndex++;        
+    }
 }
 
-async function updateQuote(text, subtext) {
-    const charArr = text.split("");
+async function updateQuote(textSplit, subtext) {
     quote = document.getElementById("quote");
-    console.log(charArr);
-    for (let i = 0; i < charArr.length; i++) {
+    for (let i = 0; i < textSplit.length; i++) {
         const character = document.createElement("span");
         character.className = "character";
-        character.innerHTML = charArr[i];
+        character.innerHTML = textSplit[i];
         quote.appendChild(character);
-
     }
     // document.getElementById("quote").innerHTML = text;
 }
-
-
 
 // https://github.com/lukePeavey/quotable#get-random-quotes
 async function fetchQuote() {
     const response = await fetch("https://api.quotable.io/random");
     const data = await response.json();
     if (response.ok) {
-        updateQuote(data.content, data.author);
-       
         return data;
         // quote.textContent = data.content;
         // cite.textContent = data.author;
@@ -46,4 +51,18 @@ async function fetchQuote() {
         return "An error occured";
     }
 }
-currentQuote = fetchQuote();
+
+async function fetchAndUpdate() {
+    quote = await fetchQuote();
+    currentQuote = quote;
+    currentQuoteContentSplit = quote.content.split("");
+
+    updateQuote(currentQuoteContentSplit, quote.author);
+    return quote;
+}
+
+currentQuote = "";
+currentQuoteContentSplit = ""; 
+caretIndex = 0;
+
+fetchAndUpdate();
