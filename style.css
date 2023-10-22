@@ -1,10 +1,31 @@
+@font-face {
+  font-family: "SourceCodePro";
+  src: url("SourceCodePro-VariableFont_wght.ttf");
+}
+
 html {
-    background-color: black;
-    color: white;
+    background-color: #161618;
+    color: #e4e6eb;
+    font-family: "SourceCodePro", "Regular";
+    overflow-x: hidden;
+}
+
+#caret {
+    top: 45%;
+    left: calc(50% - 2px);
+    position: absolute;
+    font-size: 35px;
+    color: yellow;
 }
 
 #quote {
-    size: 500px;
+    position: absolute;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 30px;
+    width: 100%;
+    left: 50%;
+    top: 45%;
 }
 
 #quote .character {

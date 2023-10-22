@@ -3,23 +3,7 @@ window.addEventListener("keydown", function (event) {
         return; // Do nothing if the event was already processed
     }
 
-    switch (event.key) {
-        case "ArrowDown":
-            // code for "down arrow" key press.
-            displayParagraph("abyu bala");
-            break;
-        case "ArrowUp":
-            // code for "up arrow" key press.
-            break;
-        case "ArrowLeft":
-            // code for "left arrow" key press.
-            break;
-        case "ArrowRight":
-            // code for "right arrow" key press.
-            break;
-        default:
-            return; // Quit when this doesn't handle the key event.
-    }
+    registerKeyPress(event.key);
 
     // Cancel the default action to avoid it being handled twice
     event.preventDefault();
@@ -27,20 +11,33 @@ window.addEventListener("keydown", function (event) {
 // the last option dispatches the event to the listener first,
 // then dispatches event to window
 
-
-
-function updateQuote(text, subtext) {
-    quote = document.getElementById("quote");
-    console.log(quote);
-    quote.innerHTML = text;
+function registerKeyPress(key) {
+    console.log(key);
 }
+
+async function updateQuote(text, subtext) {
+    const charArr = text.split("");
+    quote = document.getElementById("quote");
+    console.log(charArr);
+    for (let i = 0; i < charArr.length; i++) {
+        const character = document.createElement("span");
+        character.className = "character";
+        character.innerHTML = charArr[i];
+        quote.appendChild(character);
+
+    }
+    // document.getElementById("quote").innerHTML = text;
+}
+
+
 
 // https://github.com/lukePeavey/quotable#get-random-quotes
 async function fetchQuote() {
     const response = await fetch("https://api.quotable.io/random");
     const data = await response.json();
     if (response.ok) {
-        console.log(data);
+        updateQuote(data.content, data.author);
+       
         return data;
         // quote.textContent = data.content;
         // cite.textContent = data.author;
@@ -49,5 +46,4 @@ async function fetchQuote() {
         return "An error occured";
     }
 }
-
-window.onload = updateQuote(fetchQuote.content, "");
+currentQuote = fetchQuote();
