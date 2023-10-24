@@ -1,25 +1,32 @@
 // $ to denote DOM elements
 let $quoteElement = document.getElementById("quote");
+let $carriageElement = document.getElementById("carriage");
 let $characterElements = [];
 
 // Resets quote DOM element with some text
 async function resetQuote(text, subtext) {
-    // Clears the children of quote DOM element
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
+    // Clears the children of carriage DOM element
+    while ($carriageElement.firstChild) {
+        $carriageElement.removeChild($carriageElement.firstChild);
     }
 
     // Creates and appends character DOM elements
     for (let i = 0; i < text.length; i++) {
-        const $character = createCharacter_(text.charAt(i));
-        $quoteElement.appendChild($character);
+        let $character = "";
+        if (text.charAt(i) == " ") {
+            $character = createCharacter_("·");
+        }
+        else {
+            $character = createCharacter_(text.charAt(i));
+        }
+        $carriageElement.appendChild($character);
         $characterElements[i] = $character;
     }
 }
 
-// Shifts quote to the left by one unit (ch)
-function shiftQuote() {
-    $quoteElement.style.left = "calc(50% + " + ; //howwwwwwwww
+// Shifts carriage to the left by one unit (ch)
+function shiftCarriage() {
+    $carriageElement.style.left = "-" + caretIndex + "ch";
 }
 
 // Creates and returns a character DOM element
@@ -33,11 +40,23 @@ function createCharacter_(char) {
 // Updates character DOM element when pressed correctly
 function updateCharacterPositive(index) {
     $character = $characterElements[index];
-    $character.className = "characterPositive";
+    $character.classList.remove("negative");
+    $character.classList.remove("neutral");
+    $character.classList.add("positive");
 }
 
 // Updates character DOM element when pressed incorrectly
 function updateCharacterNegative(index) {
     $character = $characterElements[index];
-    $character.className = "characterNegative";
+    $character.classList.remove("positive");
+    $character.classList.remove("neutral");
+    $character.classList.add("negative");
+}
+
+// Updates character DOM element when backspace is pressed
+function updateCharacterNeutral(index) {
+    $character = $characterElements[index];
+    $character.classList.remove("positive");
+    $character.classList.remove("negative");
+    $character.classList.add("neutral");
 }

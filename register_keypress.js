@@ -20,6 +20,15 @@ function registerKeyPress(pressedKey) {
         if (pressedKey == IGNORE_KEYS[i]) return;
     }
 
+    // Undo when backspace pressed
+    if(pressedKey == "Backspace") {
+        if (caretIndex > 0) {
+            caretIndex--;
+            shiftCarriage();
+            updateCharacterNeutral(caretIndex);
+        }
+        return;
+    }
     if (quoteData.content.charAt(caretIndex) == pressedKey) {
         updateCharacterPositive(caretIndex);
     }
@@ -27,4 +36,5 @@ function registerKeyPress(pressedKey) {
         updateCharacterNegative(caretIndex);
     }
     caretIndex++;
+    shiftCarriage();
 }

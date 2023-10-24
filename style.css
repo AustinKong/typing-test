@@ -20,22 +20,29 @@ html {
 
 #quote {
     position: absolute;
-    overflow: hidden;
+    top: 45%;
+    left: 50%;
+}
+
+#carriage {
+    position: absolute;
+    width: fit-content;
     white-space: nowrap;
     font-size: 30px;
-    width: 100%;
-    left: 50%;
-    top: 45%;
 }
 
 #quote .character {
-    
+    font-size: 30px;
 }
 
-#quote .characterPositive {
+#quote .neutral {
+    color: #e4e6eb;
+}
+
+#quote .positive {
     color: gray;
 }
 
-#quote .characterNegative {
+#quote .negative {
     color: red;
 }
