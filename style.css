@@ -31,3 +31,11 @@ html {
 #quote .character {
     
 }
+
+#quote .characterPositive {
+    color: gray;
+}
+
+#quote .characterNegative {
+    color: red;
+}
