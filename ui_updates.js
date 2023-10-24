@@ -4,7 +4,7 @@ let $carriageElement = document.getElementById("carriage");
 let $characterElements = [];
 
 // Resets quote DOM element with some text
-async function resetQuote(text, subtext) {
+async function resetQuote(text) {
     // Clears the children of carriage DOM element
     while ($carriageElement.firstChild) {
         $carriageElement.removeChild($carriageElement.firstChild);
@@ -15,6 +15,7 @@ async function resetQuote(text, subtext) {
         let $character = "";
         if (text.charAt(i) == " ") {
             $character = createCharacter_("·");
+            $character.classList.add("space");
         }
         else {
             $character = createCharacter_(text.charAt(i));
@@ -24,9 +25,14 @@ async function resetQuote(text, subtext) {
     }
 }
 
+// Updates footer DOM elements
+function updateFooters(quoteData) {
+    
+}
+
 // Shifts carriage to the left by one unit (ch)
 function shiftCarriage() {
-    $carriageElement.style.left = "-" + caretIndex + "ch";
+    $carriageElement.style.transform = "translateX(-" + caretIndex + "ch)";
 }
 
 // Creates and returns a character DOM element

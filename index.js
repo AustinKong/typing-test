@@ -18,6 +18,17 @@ async function fetchQuote() {
 async function fetchAndReset() {
     quoteData = await fetchQuote();
     resetQuote(quoteData.content, quoteData.author);
+    console.log(quoteData);
+}
+
+// Ends when the last character is typed
+function onComplete() {
+    console.log("End");
+}
+
+// Begins when the first character is typed
+function onBegin() {
+    console.log("Begin");
 }
 
 fetchAndReset();

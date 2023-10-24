@@ -8,27 +8,49 @@ html {
     color: #e4e6eb;
     font-family: "SourceCodePro", "Regular";
     overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+#navBar {
+    width: 100%;
+    text-align: center;
+    height: 20%;
+}
+
+#quote {
+    margin-top: 20%;
+    padding-left: 50%;
+    margin-bottom: 15%;
+    position: relative;
+}
+
+#footer {
+    height: 40%;
+}
+
+#footer div {
+    width: 20%;
+    float: left;
+    color: rgb(90, 90, 90);
+    text-align: center;
 }
 
 #caret {
-    top: 45%;
-    left: calc(50% - 2px);
+    top: 0;
+    left: calc(50% - 0.1ch);
     position: absolute;
     font-size: 35px;
     color: yellow;
 }
 
-#quote {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-}
-
 #carriage {
-    position: absolute;
+    position: relative;
     width: fit-content;
     white-space: nowrap;
     font-size: 30px;
+    transition: all 0.1s;
+    transition-timing-function: ease-in-out;
 }
 
 #quote .character {
@@ -44,5 +66,9 @@ html {
 }
 
 #quote .negative {
-    color: red;
+    color: red !important;
+}
+
+#quote .space {
+    color: rgb(49, 49, 49);
 }
