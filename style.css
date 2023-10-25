@@ -80,6 +80,8 @@ body {
 
 #quote .character {
     font-size: 30px;
+    display: inline-block;
+    min-width: 1ch;
 }
 
 #quote .neutral {

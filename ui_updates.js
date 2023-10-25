@@ -16,11 +16,6 @@ let $characterElements = [];
 
 // Resets quote DOM element with some text
 function resetQuote(text) {
-    // Clears the children of carriage DOM element
-    while ($carriageElement.firstChild) {
-        $carriageElement.removeChild($carriageElement.firstChild);
-    }
-
     // Creates and appends character DOM elements
     for (let i = 0; i < text.length; i++) {
         let $character = "";
@@ -48,6 +43,10 @@ function toggleQuoteBlur(toggleOn) {
 
 // Resets carriage to original location
 function resetCarriage() {
+    // Clears the children of carriage DOM element
+    while ($carriageElement.firstChild) {
+        $carriageElement.removeChild($carriageElement.firstChild);
+    }
     $carriageElement.style.transform = "translateX(0)";
 }
 

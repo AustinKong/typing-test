@@ -25,7 +25,7 @@ function calculateStatistics(currentTime) {
 
     statistics.WPM = netWPS >= 0 ? round_(netWPS * 60, 2) : 0;
     statistics.Characters = netCharacters - netErrors;
-    statistics.Accuracy = round_(accuracy, 2) * 100;
+    statistics.Accuracy = round_(accuracy * 100, 1);
     statistics.Time = round_(timeElapsed, 1);
     return statistics;
 }
