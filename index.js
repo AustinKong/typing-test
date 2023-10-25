@@ -7,8 +7,6 @@ async function fetchQuote() {
     const data = await response.json();
     if (response.ok) {
         return data;
-        // quote.textContent = data.content;
-        // cite.textContent = data.author;
     } else {
         console.log("Unexpected Error:" + data);
         return "An error occured";
@@ -17,20 +15,35 @@ async function fetchQuote() {
 
 async function fetchAndReset() {
     quoteData = await fetchQuote();
+
+    // Logic reset
+    caretIndex = 0;
+    netCharacters = 0;
+    netErrors = 0;
+    uncorrectedErrors = [];
+
+    // UI reset
     resetQuote(quoteData.content, quoteData.author);
     updateSource(quoteData.author);
-    console.log(quoteData);
+    updateFooters({
+        "WPM": "-",
+        "Characters": 0,
+        "Accuracy": "-",
+        "Time": 0
+    })
+    resetCarriage();
 }
 
 // Ends when the last character is typed
 function onComplete() {
-    console.log("End");
+    typingMode = false;
 }
 
 // Begins when the first character is typed
 function onBegin() {
-    console.log("Begin");
+    begunTyping = true;
     startTime = new Date();
+    console.log("flag");
 }
 
 fetchAndReset();

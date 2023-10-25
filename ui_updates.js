@@ -15,7 +15,7 @@ const $sourceElement = document.getElementById("source")
 let $characterElements = [];
 
 // Resets quote DOM element with some text
-async function resetQuote(text) {
+function resetQuote(text) {
     // Clears the children of carriage DOM element
     while ($carriageElement.firstChild) {
         $carriageElement.removeChild($carriageElement.firstChild);
@@ -34,6 +34,11 @@ async function resetQuote(text) {
         $carriageElement.appendChild($character);
         $characterElements[i] = $character;
     }
+}
+
+// Resets carriage to original location
+function resetCarriage() {
+    $carriageElement.style.transform = "translateX(0)";
 }
 
 // Updates source DOM element

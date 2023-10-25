@@ -23,7 +23,7 @@ function calculateStatistics(currentTime) {
     let netWPS = grossWPS - uncorrectedErrors.length / timeElapsed;
     let accuracy = 1 - (netErrors / netCharacters);
 
-    statistics.WPM = round_(netWPS * 60, 2);
+    statistics.WPM = netWPS >= 0 ? round_(netWPS * 60, 2) : 0;
     statistics.Characters = netCharacters - netErrors;
     statistics.Accuracy = round_(accuracy, 2) * 100;
     statistics.Time = round_(timeElapsed, 1);

@@ -9,6 +9,7 @@ window.addEventListener("keydown", function (event) {
     if (event.defaultPrevented) {
         return; // Do nothing if the event was already processed
     }
+
     if (typingMode) typingRegisterKeyPress_(event.key);
     else nonTypingRegisterKeyPress_(event.key);
 
@@ -23,6 +24,9 @@ function typingRegisterKeyPress_(pressedKey) {
         if (pressedKey == IGNORE_KEYS[i]) return;
     }
 
+    // Call onBegin() on start
+    if (!begunTyping && caretIndex == 0) onBegin();
+    
     // Undo when backspace pressed
     if(pressedKey == "Backspace") {
         if (caretIndex > 0) {
@@ -43,26 +47,19 @@ function typingRegisterKeyPress_(pressedKey) {
     }
     netCharacters++;
     caretIndex++;
+
+    // Call onComplete() on finish
+    if (caretIndex >= quoteData.content.length) onComplete();
+
     shiftCarriage();
+
     let statistics = calculateStatistics(new Date());
     updateFooters(statistics);
-    // Call onComplete() on finish
-    if (caretIndex >= quoteData.content.length) {
-        typingMode = false;
-        onComplete();
-    }
-
-    // Call onBegin() on start
-    if (!begunTyping && caretIndex == 1) {
-        begunTyping = true;
-        onBegin();
-    }
 }
 
 // Catches key presses during non-typing mode
 function nonTypingRegisterKeyPress_(pressedKey) {
-    // To be worked on 🚩
-    if (pressedKey = "r") {
+    if (pressedKey == "r") {
         fetchAndReset();
         typingMode = true;
         begunTyping = false;
