@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "SourceCodePro";
-  src: url("SourceCodePro-VariableFont_wght.ttf");
+    font-family: "SourceCodePro";
+    src: url("SourceCodePro-VariableFont_wght.ttf");
 }
 
 html {
@@ -13,7 +13,9 @@ html {
 }
 
 /* Allows all elements to have border-box sizing */
-*, *:before, *:after {
+*,
+*:before,
+*:after {
     box-sizing: inherit;
 }
 
@@ -67,6 +69,14 @@ body {
     position: absolute;
     font-size: 35px;
     color: yellow;
+}
+
+#keyDisplay {
+    top: 100px;
+    transform: translateX(-50%);
+    position: absolute;
+    font-size: 35px;
+    color: rgb(90, 90, 90);
 }
 
 #carriage {

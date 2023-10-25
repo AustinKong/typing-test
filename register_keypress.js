@@ -1,5 +1,6 @@
 const IGNORE_KEYS = [ 
-    "Shift", "Control", "Meta", "Alt", "CapsLock"
+    "Shift", "Control", "Meta", "Alt", "CapsLock", "Enter", "Escape", "Tab",
+    "ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"
 ]
 
 let typingMode = true;
@@ -19,9 +20,14 @@ window.addEventListener("keydown", function (event) {
 
 // Catches key press events during typing mode
 function typingRegisterKeyPress_(pressedKey) {
+
+
     // Cycle through IGNORE_KEYS to skip
     for (let i = 0; i < IGNORE_KEYS.length; i++) {
-        if (pressedKey == IGNORE_KEYS[i]) return;
+        if (pressedKey == IGNORE_KEYS[i]) {
+            updateKeyDisplay(pressedKey, 0);
+            return;
+        }
     }
 
     // Call onBegin() on start
@@ -33,15 +39,18 @@ function typingRegisterKeyPress_(pressedKey) {
             caretIndex--;
             shiftCarriage();
             updateCharacterNeutral(caretIndex);
+            updateKeyDisplay(pressedKey, 0);
             if (uncorrectedErrors.includes(caretIndex)) uncorrectedErrors.pop();
         }
         return;
     }
     if (quoteData.content.charAt(caretIndex) == pressedKey) {
         updateCharacterPositive(caretIndex);
+        updateKeyDisplay(pressedKey, 1);
     }
     else {
         updateCharacterNegative(caretIndex);
+        updateKeyDisplay(pressedKey, -1);
         netErrors++;
         uncorrectedErrors.push(caretIndex);
     }

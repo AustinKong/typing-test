@@ -1,6 +1,14 @@
-const ALPHABET_CHARACTERS = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-const COMMON_PUNCTUATION = [".", ",", "?", "!", " "];
-const CODING_PUNCTUATION = [";", "<", ">", "/", "\\", "&", "*", "(", ")", "[", "]", "{", "}", "%", "+", "-", "=", "\""];
+const ALPHABET_CHARACTERS = [
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
+    "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
+];
+const COMMON_PUNCTUATION = [
+    ".", ",", "?", "!", " "
+];
+const CODING_PUNCTUATION = [
+    ";", "<", ">", "/", "\\", "&", "*", "(", ")", "[", "]", "{", "}", "%", "+",
+    "-", "=", "\""
+];
 
 let quoteData = {};
 let caretIndex = 0;
@@ -21,8 +29,8 @@ async function fetchQuote() {
 }
 
 async function fetchAndReset() {
-    // quoteData = await fetchQuote();
-    quoteData = generateRandom();
+    quoteData = await fetchQuote();
+    // quoteData = generateRandom();
 
     // Logic reset
     caretIndex = 0;
@@ -50,7 +58,7 @@ function generateRandom() {
         "author": "🚀"
     }
     let text = "";
-    
+
     for (let i = 0; i < 100; i++) {
         let randomNumber = Math.floor(Math.random() * 6);
         console.log(randomNumber);
@@ -69,7 +77,7 @@ function generateRandom() {
                 break;
         }
     }
-    quote.content = text; 
+    quote.content = text;
     return quote;
 }
 

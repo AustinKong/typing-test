@@ -1,6 +1,7 @@
 // $ to denote DOM elements
 const $quoteElement = document.getElementById("quote");
 const $carriageElement = document.getElementById("carriage");
+const $keyDisplayElement = document.getElementById("keyDisplay");
 const $WPMElement = document.getElementById("WPM")
     .getElementsByClassName("statisticTitle")[0];
 const $characterCountElement = document.getElementById("characterCount")
@@ -66,6 +67,28 @@ function updateFooters(statistics) {
 // Shifts carriage to the left by one unit (ch)
 function shiftCarriage() {
     $carriageElement.style.transform = "translateX(-" + caretIndex + "ch)";
+}
+
+// Updates keyDisplay DOM element
+// Status -1 for incorrect, 0 for neutral (funtion keys), 1 for correct
+function updateKeyDisplay(keyPressed, status) {
+    if (keyPressed == " ") {
+        keyPressed = "Space";
+    }
+    let color;
+    switch (status) {
+        case -1:
+            color = "red";
+            break;
+        case 0:
+            color = "rgb(61, 61, 61)";
+            break;
+        case 1:
+            color = "rgb(90, 90, 90)";
+            break;
+    }
+    $keyDisplayElement.style.color = color;
+    $keyDisplayElement.innerHTML = keyPressed;
 }
 
 // Creates and returns a character DOM element
