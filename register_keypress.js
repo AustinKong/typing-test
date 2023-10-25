@@ -29,6 +29,7 @@ function typingRegisterKeyPress_(pressedKey) {
             caretIndex--;
             shiftCarriage();
             updateCharacterNeutral(caretIndex);
+            if (uncorrectedErrors.includes(caretIndex)) uncorrectedErrors.pop();
         }
         return;
     }
@@ -37,17 +38,21 @@ function typingRegisterKeyPress_(pressedKey) {
     }
     else {
         updateCharacterNegative(caretIndex);
+        netErrors++;
+        uncorrectedErrors.push(caretIndex);
     }
+    netCharacters++;
     caretIndex++;
     shiftCarriage();
-
-    // call onComplete() on finish
+    let statistics = calculateStatistics(new Date());
+    updateFooters(statistics);
+    // Call onComplete() on finish
     if (caretIndex >= quoteData.content.length) {
         typingMode = false;
         onComplete();
     }
 
-    // call onBegin() on start
+    // Call onBegin() on start
     if (!begunTyping && caretIndex == 1) {
         begunTyping = true;
         onBegin();
@@ -63,3 +68,4 @@ function nonTypingRegisterKeyPress_(pressedKey) {
         begunTyping = false;
     }
 }
+

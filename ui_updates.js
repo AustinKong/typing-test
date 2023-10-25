@@ -1,6 +1,17 @@
 // $ to denote DOM elements
-let $quoteElement = document.getElementById("quote");
-let $carriageElement = document.getElementById("carriage");
+const $quoteElement = document.getElementById("quote");
+const $carriageElement = document.getElementById("carriage");
+const $WPMElement = document.getElementById("WPM")
+    .getElementsByClassName("statisticTitle")[0];
+const $characterCountElement = document.getElementById("characterCount")
+    .getElementsByClassName("statisticTitle")[0];
+const $accuracyElement = document.getElementById("accuracy")
+    .getElementsByClassName("statisticTitle")[0];
+const $timeElement = document.getElementById("time")
+    .getElementsByClassName("statisticTitle")[0];
+const $sourceElement = document.getElementById("source")
+    .getElementsByClassName("statisticTitle")[0];
+
 let $characterElements = [];
 
 // Resets quote DOM element with some text
@@ -25,9 +36,17 @@ async function resetQuote(text) {
     }
 }
 
-// Updates footer DOM elements
-function updateFooters(quoteData) {
-    
+// Updates source DOM element
+function updateSource(text) {
+    $sourceElement.innerHTML = text;
+}
+
+// Updates footer DOM elements, excluding source
+function updateFooters(statistics) {
+    $WPMElement.innerHTML = statistics.WPM;
+    $characterCountElement.innerHTML = statistics.Characters;
+    $accuracyElement.innerHTML = statistics.Accuracy + "%";
+    $timeElement.innerHTML = statistics.Time + "s";
 }
 
 // Shifts carriage to the left by one unit (ch)

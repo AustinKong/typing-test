@@ -18,6 +18,7 @@ async function fetchQuote() {
 async function fetchAndReset() {
     quoteData = await fetchQuote();
     resetQuote(quoteData.content, quoteData.author);
+    updateSource(quoteData.author);
     console.log(quoteData);
 }
 
@@ -29,6 +30,7 @@ function onComplete() {
 // Begins when the first character is typed
 function onBegin() {
     console.log("Begin");
+    startTime = new Date();
 }
 
 fetchAndReset();

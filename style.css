@@ -27,6 +27,8 @@ html {
 
 #footer {
     height: 40%;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 #footer div {
