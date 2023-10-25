@@ -32,11 +32,13 @@ async function fetchAndReset() {
         "Time": 0
     })
     resetCarriage();
+    toggleQuoteBlur(false);
 }
 
 // Ends when the last character is typed
 function onComplete() {
     typingMode = false;
+    toggleQuoteBlur(true);
 }
 
 // Begins when the first character is typed

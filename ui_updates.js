@@ -36,6 +36,16 @@ function resetQuote(text) {
     }
 }
 
+// Toggles blur effect over quote
+function toggleQuoteBlur(toggleOn) {
+    if (toggleOn) {
+        $quoteElement.style.filter = "blur(3px)";
+    }
+    else {
+        $quoteElement.style.filter = "blur(0)";
+    }
+}
+
 // Resets carriage to original location
 function resetCarriage() {
     $carriageElement.style.transform = "translateX(0)";
