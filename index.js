@@ -61,7 +61,6 @@ function generateRandom() {
 
     for (let i = 0; i < 100; i++) {
         let randomNumber = Math.floor(Math.random() * 6);
-        console.log(randomNumber);
         switch (randomNumber) {
             case 0:
             case 1:
@@ -95,4 +94,4 @@ function onBegin() {
 }
 
 fetchAndReset();
-generateRandom();
+// generateRandom();

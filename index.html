@@ -14,10 +14,18 @@
     <script defer src="index.js"></script>
     <script defer src="register_keypress.js"></script>
     <script defer src="statistics.js"></script>
+    <script defer src="mouse_navigation.js"></script>
+
     <div id="navBar">
-        <h2>
+        <h2 id="title">
             🌑 TODO: show continuous errors in keydisplay 🚀
         </h2>
+        <ul id="options">
+            <li class="active" onclick="optionOnClick('qte')">Quote</li>
+            <li onclick="optionOnClick('rdmAlbt')">Random Alphabet Only</li>
+            <li onclick="optionOnClick('rdmCmnPnc')">Random Common Punctuation</li>
+            <li onclick="optionOnClick('rdmAllPnc')">Random All Punctuation</li>
+        </ul>
     </div>
     <div id="quote">
         <div class="container">
