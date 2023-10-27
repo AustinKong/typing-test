@@ -1,14 +1,23 @@
 // Handles option button clicks
 function optionOnClick(uiId) {
     switch (uiId) {
-        case "qte":
-            console.log("Quote");
+        case 0:
+            generationMode = "quote";
             break;
-        case "rdmAlbt":
+        case 1:
+            generationMode = "randomAlphabet";
             break;
-        case "rdmCmnPnc":
+        case 2:
+            generationMode = "randomCommonPunctuation";
             break;
-        case "rdmAllPnc":
+        case 3:
+            generationMode = "randomAllPunctuation";
             break;
     }
+    toggleQuoteBlur(true);
+    updateOptionItems(uiId);
+    setTimeout(() => {
+        fetchAndReset();
+        typingMode = true;
+    }, 1000);
 }
