@@ -140,11 +140,15 @@ function updateOptionItems(id) {
 
 // Random emoji for title on load
 function updateTitle() {
-    let randEmoji1 = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
-    let randEmoji2 = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
+    let randEmoji1 = getRandomEmoji();
+    let randEmoji2 = getRandomEmoji();
     $titleElement.innerHTML = randEmoji1 + " Emoji Type " + randEmoji2;
     if (randEmoji1 == randEmoji2) {
         $titleElement.innerHTML = randEmoji1 + " Emoji Type! " + randEmoji2 + 
             " (Wow, congrats on getting two exact same emojis!)";
     }
+}
+
+function getRandomEmoji() {
+    return EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
 }

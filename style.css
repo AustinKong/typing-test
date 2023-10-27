@@ -170,6 +170,10 @@ body {
     text-align: center;
 }
 
+#trueFooter a {
+    color: inherit;
+}
+
 @media only screen and (max-height: 600px) {
   #trueFooter {
     display: none;

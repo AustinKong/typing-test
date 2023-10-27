@@ -31,7 +31,7 @@ async function fetchQuote() {
 function generateRandom(alphabetWeight, commonPunctuationWeight, codingPunctuationWeight) {
     let quote = {
         "content": "",
-        "author": "🚀"
+        "author": "Random " + getRandomEmoji()
     }
     let text = "";
 
