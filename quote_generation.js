@@ -64,5 +64,5 @@ function weightedRandom_(w1, w2, w3) {
 
 // Returns a random character from a character set
 function randomCharacter_(characterSet) {
-    return characterSet[Math.floor(Math.random() * characterSet.length)]
+    return characterSet[Math.floor(Math.random() * characterSet.length)];
 }
