@@ -20,8 +20,8 @@ function calculateStatistics(currentTime) {
     };
     let timeElapsed = (currentTime - startTime) / 1000;
     let grossWPS = netCharacters / WORD_LENGTH / timeElapsed;
-    let netWPS = grossWPS - uncorrectedErrors.length / timeElapsed;
     let accuracy = 1 - (netErrors / netCharacters);
+    let netWPS = grossWPS * accuracy;
 
     statistics.WPM = netWPS >= 0 ? round_(netWPS * 60, 2) : 0;
     statistics.Characters = netCharacters - netErrors;
